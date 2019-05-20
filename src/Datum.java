@@ -59,22 +59,25 @@ public class Datum {
 	}
 
 	public boolean bestaatDatum() {
-		if (dag >= 1 && maand >= 1 && maand <= 12 && jaar >= 1900 && jaar <= 2100) {
-
-			if ((maand == 1 || maand == 3 || maand == 5 || maand == 7 || maand == 8 || maand == 10 || maand == 12) && (dag <= 31)) {
-				if ((maand == 4 || maand == 6 || maand == 9 || maand == 11) && (dag <= 30)) {
-					if ((maand == 2) && (dag <= 28) && jaar % 4 != 0) {
-
-						return true;
-
-					}
-					ifelse ((maand == 2) && (dag <= 28) && jaar % 4 != 0) {
-						return true;
-
-					}
-				}
+		if(jaar>=1900&&jaar<=2100&&maand>=1&&maand<=12&&dag>=1){
+			if(maand==1 || maand==3 || maand==5 || maand==7 || maand==8 || maand==10 || maand==12){
+				if(dag<=31){	return true;	}
 			}
+			if(maand==4 || maand==6 || maand==9 || maand==11){
+				if(dag<=30){	return true;	}
+			}
+			if(maand==2 && jaar % 4 == 0){
+				if(jaar%100==0){
+					if(jaar%400==0){
+						if(dag<=29){	return true;	}
+					}
+				} else{
+					if(dag<=29){	return true;	}
+
+				}
+				if(dag<=28){	return true;	}
+			}
+			return false;
 		}
-		return false;
 	}
 }

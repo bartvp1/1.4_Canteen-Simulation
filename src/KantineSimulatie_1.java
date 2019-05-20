@@ -1,15 +1,15 @@
 public class KantineSimulatie {
 
-    private Kantine kantine;
+    //private Kantine kantine;
 
-    public static final int DAGEN = 7;
+    //public static final int DAGEN = 7;
 
     /**
      * Constructor
      */
-    public KantineSimulatie() {
-        kantine = new Kantine();
-    }
+    //public KantineSimulatie() {
+    //    kantine = new Kantine();
+    //}
 
     /**
      * Deze methode simuleert een aantal dagen in het
@@ -17,39 +17,42 @@ public class KantineSimulatie {
      *
      * @param dagen
      */
-    public void simuleer(int dagen) {
+    //public void simuleer(int dagen) {
 
         // herhaal voor elke dag
-        for(int i = 0; ...) {
+    //    for(int i = 0; ...) {
 
             // per dag nu even vast 10 + i personen naar binnen
             // laten gaan, wordt volgende week veranderd...
 
             // for lus voor personen
-            for(int j = 0; j < 10 + i; j++){
+      //      for(int j = 0; j < 10 + i; j++){
                 // kantine.(...);
-            }
+           // }
 
             // verwerk rij voor de kassa
 
             // toon dagtotalen (artikelen en geld in kassa)
 
             // reset de kassa voor de volgende dag
-        }
-    }
+        //}
+   // }
 
     /**
      * Start een simulatie
      */
     public static void main(String[] args) {
-        int dagen;
+        //int dagen;
 
-        if (args.length == 0) {
-            dagen = DAGEN;
-        } else {
-            dagen = Integer.parseInt(args[0]);
-        }
+        //if (args.length == 0) {
+        //    dagen = DAGEN;
+        //} else {
+        //    dagen = Integer.parseInt(args[0]);
+        //}
 
-        simulate(dagen);
+        //simulate(dagen);
+        Datum date = new Datum();
+        boolean x = date.bestaatDatum(29,2,2016);
+        System.out.println(x);
     }
 }
