@@ -77,7 +77,7 @@ public class Datum {
 				}
 				if(dag<=28){	return true;	}
 			}
-			return false;
 		}
+		return false;
 	}
 }
