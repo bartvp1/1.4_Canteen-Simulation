@@ -26,4 +26,12 @@ public class Artikel {
     public void setPrijs(float nieuw){
         prijs = nieuw;
     }
+
+    @Override
+    public String toString() {
+        return "Artikel{" +
+                "naam='" + naam + '\'' +
+                ", prijs=" + prijs +
+                '}';
+    }
 }

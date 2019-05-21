@@ -13,10 +13,11 @@ public class Persoon {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.geboortedatum = geboortedatum;
-        this.setGeslacht(geslacht);
+        this.geslacht = geslacht;
     }
 
     public Persoon(){
+
     }
 
     public void setBsn(int bsn){
@@ -61,17 +62,21 @@ public class Persoon {
     }
 
     public String getGeslacht(){
-        if(geslacht == 'M'){
-           return "Man";
-        }
-        else if(geslacht == 'V'){
-            return "Vrouw";
-        }
-        else{
-            return "Onbekend";
+        switch(geslacht){
+            case 'M':   return "Man";
+            case 'V':   return "Vrouw";
+            default:    return "Onbekend";
         }
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Persoon{" +
+                "bsn=" + bsn +
+                ", voornaam='" + voornaam + '\'' +
+                ", achternaam='" + achternaam + '\'' +
+                ", geboortedatum=" + geboortedatum +
+                ", geslacht=" + geslacht +
+                '}';
+    }
 }
