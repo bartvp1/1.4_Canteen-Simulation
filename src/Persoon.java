@@ -13,11 +13,10 @@ public class Persoon {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.geboortedatum = geboortedatum;
-        this.geslacht = geslacht;
+        this.setGeslacht(geslacht);
     }
 
     public Persoon(){
-
     }
 
     public void setBsn(int bsn){
