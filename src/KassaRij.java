@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class KassaRij {
 
-    public ArrayList<Dienblad> dienbladen = new ArrayList();
+    public Queue<Dienblad> dienbladen = new LinkedList();
     /**
      * Constructor
      */
@@ -28,7 +29,7 @@ public class KassaRij {
      * @return Eerste klant in de rij of null
      */
     public Dienblad eerstePersoonInRij() {
-        return dienbladen.get(0);
+        return dienbladen.poll();
 
     }
 

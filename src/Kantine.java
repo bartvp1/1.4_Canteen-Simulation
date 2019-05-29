@@ -30,9 +30,7 @@ public class Kantine {
      */
     public void verwerkRijVoorKassa() {
         while(kassarij.erIsEenRij()) {
-            break;
-            //kassa.rekenAf(kassarij.eerstePersoonInRij());
-            //kassarij.dienbladen.remove(0);
+            kassa.rekenAf(kassarij.eerstePersoonInRij());
         }
     }
 
