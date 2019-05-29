@@ -26,27 +26,9 @@ public class Dienblad {
         artikelen.add(a);
     }
 
-    /**
-     * Methode om aantal artikelen op dienblad te tellen
-     *
-     * @return Het aantal artikelen
-     */
-    public int getAantalArtikelen() {
-        return artikelen.size();
-    }
 
-    /**
-     * Methode om de totaalprijs van de artikelen
-     * op dienblad uit te rekenen
-     *
-     * @return De totaalprijs
-     */
-    public double getTotaalPrijs() {
-        double totaal = 0;
-        for(Artikel a : artikelen){
-            totaal+=a.getPrijs();
-        }
-        return totaal;
+    public Iterator getArtikelen(){
+        return artikelen.iterator();
     }
 
     public Persoon getKlant(){

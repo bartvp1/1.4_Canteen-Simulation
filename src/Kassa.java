@@ -22,10 +22,41 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        geldInKas+=klant.getTotaalPrijs();
-        aantalArtikelen+=klant.getAantalArtikelen();
+        geldInKas+=getTotaalPrijs();
+        aantalArtikelen+=getAantalArtikelen();
+    }
+    /**
+     * Methode om aantal artikelen op dienblad te tellen
+     *
+     * @return Het aantal artikelen
+     */
+    public int getAantalArtikelen() {
+        int aantal=0;
+        Iterator it = rij.eerstePersoonInRij().getArtikelen();
+        while(it.hasNext()){
+            Artikel element = (Artikel)it.next();
+            aantal+=1;
+            it.remove();
+        }
+        return aantal;
     }
 
+    /**
+     * Methode om de totaalprijs van de artikelen
+     * op dienblad uit te rekenen
+     *
+     * @return De totaalprijs
+     */
+    public double getTotaalPrijs() {
+        double totaal = 0;
+        Iterator it = rij.eerstePersoonInRij().getArtikelen();
+        while(it.hasNext()){
+            Artikel element = (Artikel)it.next();
+            totaal+=element.getPrijs();
+            it.remove();
+        }
+        return totaal;
+    }
     /**
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd,
      * vanaf het moment dat de methode resetWaarden is aangeroepen.

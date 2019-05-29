@@ -34,8 +34,8 @@ class KantineSimulatie {
             // toon dagtotalen (artikelen en geld in kassa)
             // reset de kassa voor de volgende dag
             kantine.verwerkRijVoorKassa();
-            System.out.println("Totale omzet: "+kantine.hoeveelheidGeldInKassa());
-            kantine.resetKassa();
+            System.out.println("Totale omzet: "+kantine.getKassa().hoeveelheidGeldInKassa());
+            kantine.getKassa().resetKassa();
         }
     }
 
