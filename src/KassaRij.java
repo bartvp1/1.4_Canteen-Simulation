@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public class KassaRij {
 
-    private ArrayList<Dienblad> dienbladen = new ArrayList();
+    public ArrayList<Dienblad> dienbladen = new ArrayList();
     /**
      * Constructor
      */
@@ -29,6 +29,7 @@ public class KassaRij {
      */
     public Dienblad eerstePersoonInRij() {
         return dienbladen.get(0);
+
     }
 
     /**

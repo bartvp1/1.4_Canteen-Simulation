@@ -13,7 +13,7 @@ public class Dienblad {
         // method body omitted
     }
     public Dienblad(Persoon p) {
-        // method body omitted
+        klant=p;
     }
 
     /**

@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 public class Kassa {
     private double geldInKas;
-    private KassaRij rij;
+    public KassaRij rij;
     private int aantalArtikelen;
     /**
      * Constructor
