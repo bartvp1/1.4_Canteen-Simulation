@@ -17,15 +17,17 @@ public class Kantine {
      * In deze methode kiest een Persoon met een dienblad
      * de artikelen in artikelnamen.
      *
-     * @param persoon
+     * @param dienblad
      * @param artikelnamen
      */
 
-    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
-        Persoon klant = new Persoon();
-        Dienblad dienblad = new Dienblad(klant);
-        dienblad.voegToe(new Artikel());
-        dienblad.voegToe(new Artikel());
+     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen)
+     {
+        //Persoon klant = persoon;
+        //Dienblad dienblad = new Dienblad(klant);
+        for(String s : artikelnamen){
+            dienblad.voegToe(s);
+        }
         kassarij.sluitAchteraan(dienblad);
     }
 
@@ -48,5 +50,9 @@ public class Kantine {
 
     public void setKantineaanbod(KantineAanbod kantineaanbod){
         this.kantineaanbod = kantineaanbod;
+    }
+
+    public void setKantineAanbod(KantineAanbod aanbod) {
+        kantineaanbod = aanbod;
     }
 }

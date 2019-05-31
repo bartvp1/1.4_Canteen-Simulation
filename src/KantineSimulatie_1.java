@@ -1,4 +1,4 @@
-class KantineSimulatie {
+class KantineSimulatie_1 {
 
     private Kantine kantine;
 
@@ -7,7 +7,7 @@ class KantineSimulatie {
     /**
      * Constructor
      */
-    public KantineSimulatie() {
+    public KantineSimulatie_1() {
         kantine = new Kantine();
     }
 
@@ -27,7 +27,7 @@ class KantineSimulatie {
 
             // for lus voor personen
             for(int j = 0; j < 10 + i; j++){
-                kantine.loopPakSluitAan();
+                //kantine.loopPakSluitAan(new Persoon(), new Artikel[2]);
             }
 
             // verwerk rij voor de kassa
@@ -49,7 +49,7 @@ class KantineSimulatie {
         } else {
             dagen = Integer.parseInt(args[0]);
         }
-        KantineSimulatie sim = new KantineSimulatie();
+        KantineSimulatie_1 sim = new KantineSimulatie_1();
         sim.simuleer(dagen);
     }
 }
