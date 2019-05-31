@@ -13,13 +13,15 @@ public class Kantine {
         kassa = new Kassa(kassarij);
     }
 
-    /**
-     * In deze methode wordt een Persoon en Dienblad gemaakt
-     * en aan elkaar gekoppeld. Maak twee Artikelen aan
-     * en plaats deze op het dienblad. Tenslotte sluit de
-     * Persoon zich aan bij de rij voor de kassa.
+     /**
+     * In deze methode kiest een Persoon met een dienblad
+     * de artikelen in artikelnamen.
+     *
+     * @param persoon
+     * @param artikelnamen
      */
-    public void loopPakSluitAan() {
+
+    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
         Persoon klant = new Persoon();
         Dienblad dienblad = new Dienblad(klant);
         dienblad.voegToe(new Artikel());
