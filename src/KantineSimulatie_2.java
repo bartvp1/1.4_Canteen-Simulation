@@ -5,6 +5,9 @@ public class KantineSimulatie_2 {
     // kantine
     private Kantine kantine;
 
+
+    public static final int DAGEN = 7;
+
     // kantineaanbod
     private KantineAanbod kantineaanbod;
 
@@ -109,7 +112,7 @@ public class KantineSimulatie_2 {
         for(int i = 0; i < dagen; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = 50 ;//??
+            int aantalpersonen = 200 ;//??
 
             // laat de personen maar komen...
             for(int j = 0; j < aantalpersonen; j++) {
@@ -129,18 +132,32 @@ public class KantineSimulatie_2 {
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
-                kantine.loopPakSluitAan(new Persoon(), artikelen);
+                kantine.loopPakSluitAan(new Dienblad(), artikelen);
 
             }
 
             // verwerk rij voor de kassa
-
             // druk de dagtotalen af en hoeveel personen binnen
-
             // zijn gekomen
-
             // reset de kassa voor de volgende dag
+            kantine.verwerkRijVoorKassa();
+            System.out.println("Totale omzet: "+kantine.getKassa().hoeveelheidGeldInKassa());
+            System.out.println("Aantal klanten: "+aantalpersonen);
+            kantine.getKassa().resetKassa();
 
         }
+    }
+    /**
+     * Start een simulatie
+     */
+    public static void main(String[] args) {
+        int dagen;
+        if (args.length == 0) {
+            dagen = DAGEN;
+        } else {
+            dagen = Integer.parseInt(args[0]);
+        }
+        KantineSimulatie_2 sim = new KantineSimulatie_2();
+        sim.simuleer(dagen);
     }
 }
