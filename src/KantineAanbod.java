@@ -77,6 +77,9 @@ public class KantineAanbod {
      * @return artikel (of null)
      */
     public Artikel getArtikel(String productnaam) {
+        if(aanbod.get(productnaam).size() < 10){
+            vulVoorraadAan(productnaam);
+        }
         return getArtikel(getArrayList(productnaam));
     }
 }

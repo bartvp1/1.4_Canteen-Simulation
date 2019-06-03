@@ -25,8 +25,8 @@ public class KantineSimulatie_2 {
     private static double[] artikelprijzen = new double[]{1.50, 2.10, 1.65, 1.65};
 
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT = 10000;
-    private static final int MAX_ARTIKELEN_PER_SOORT = 20000;
+    private static final int MIN_ARTIKELEN_PER_SOORT = 10;
+    private static final int MAX_ARTIKELEN_PER_SOORT = 20;
 
     // minimum en maximum aantal personen per dag
     private static final int MIN_PERSONEN_PER_DAG = 50;
@@ -114,7 +114,17 @@ public class KantineSimulatie_2 {
             int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
 
             // laat de personen maar komen...
-            for(int j = 0; j < aantalpersonen; j++) {
+            for(int j = 0; j < MAX_PERSONEN_PER_DAG; j++) {
+                Persoon klant;
+                if(j <= 89){
+                    klant = new Student(j,"HBO-ICT",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
+                } else if(j>=90&&j<=99){
+                    klant = new Docent("XX"+j,"SCMI",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
+                } else if(j==100){
+                    klant = new Kantinemedewerker(j,true,j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
+                }
+
+                )
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON) ;
@@ -130,8 +140,7 @@ public class KantineSimulatie_2 {
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
-                kantine.loopPakSluitAan(new Dienblad(), artikelen);
-
+                kantine.loopPakSluitAan(new Dienblad(klant), artikelen);
             }
 
             // verwerk rij voor de kassa
