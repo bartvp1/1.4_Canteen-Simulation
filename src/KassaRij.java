@@ -41,4 +41,7 @@ public class KassaRij {
     public boolean erIsEenRij() {
         return dienbladen.size() > 0;
     }
+    public void removeKlant(Dienblad klant){
+        dienbladen.remove(klant);
+    }
 }
