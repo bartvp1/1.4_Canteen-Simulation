@@ -124,7 +124,7 @@ public class KantineSimulatie_2 {
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
                 int[] tepakken = getRandomArray(
-                    aantalartikelen, MIN_ARTIKELEN_PER_PERSOON, AANTAL_ARTIKELEN-1);
+                    aantalartikelen, 0, AANTAL_ARTIKELEN-1);
 
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
