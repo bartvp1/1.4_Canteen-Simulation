@@ -115,17 +115,20 @@ public class KantineSimulatie_2 {
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = 100;//getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
-
+            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
+            Random rand = new Random();
             aantal[i] = aantalpersonen;
+
             // laat de personen maar komen...
             for(int j = 0; j < aantalpersonen; j++) {
                 Persoon klant;
-                if(j >= 13){
+                int random = rand.nextInt(aantalpersonen);
+
+                if(random >= 13){
                     klant = new Student(j,"HBO-ICT",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(j>=2&&j<=12){
+                } else if(random>=2&&j<=12){
                     klant = new Docent("XX"+j,"SCMI",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(j==1){
+                } else if(random==1){
                     klant = new Kantinemedewerker(j,true,j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
                   else{
