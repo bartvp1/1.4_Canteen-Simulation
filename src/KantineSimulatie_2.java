@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.lang.Math.round;
+
 public class KantineSimulatie_2 {
 
     // kantine
@@ -108,25 +110,28 @@ public class KantineSimulatie_2 {
      * @param dagen
      */
     public void simuleer(int dagen) {
+        double[] omzet = new double[dagen];
+        int[] aantal = new int[dagen];
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
+            int aantalpersonen = 100;//getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
 
+            aantal[i] = aantalpersonen;
             // laat de personen maar komen...
-            for(int j = 0; j < MAX_PERSONEN_PER_DAG; j++) {
+            for(int j = 0; j < aantalpersonen; j++) {
                 Persoon klant;
-                if(j <= 89){
+                if(j >= 13){
                     klant = new Student(j,"HBO-ICT",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(j>=90&&j<=99){
+                } else if(j>=2&&j<=12){
                     klant = new Docent("XX"+j,"SCMI",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(j==100){
+                } else if(j==1){
                     klant = new Kantinemedewerker(j,true,j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
                   else{
-                    klant = new Persoon();
+                    klant = new Persoon(j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
-
+                //System.out.println(klant.toString());
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
@@ -151,11 +156,31 @@ public class KantineSimulatie_2 {
             // zijn gekomen
             // reset de kassa voor de volgende dag
             kantine.verwerkRijVoorKassa();
-            System.out.println("Totale omzet: "+kantine.getKassa().hoeveelheidGeldInKassa());
-            System.out.println("Aantal klanten: "+aantalpersonen);
+            //System.out.println("Totale omzet: "+kantine.getKassa().hoeveelheidGeldInKassa());
+            //System.out.println("Aantal klanten: "+aantalpersonen);
+
+            omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
+
             kantine.getKassa().resetKassa();
 
         }
+
+        double[] array = Administratie.berekenDagOmzet(omzet);
+        int size = array.length;
+
+        for(int i=0;i<size;i++){
+            switch(i){
+                case 0: System.out.println("Maandag: " + array[i]);break;
+                case 1: System.out.println("Dinsdag: " + array[i]);break;
+                case 2: System.out.println("Woensdag: " + array[i]);break;
+                case 3: System.out.println("Donderdag: " + array[i]);break;
+                case 4: System.out.println("Vrijdag: " + array[i]);break;
+                case 5: System.out.println("Zaterdag: " + array[i]);break;
+                case 6: System.out.println("Zondag: " + array[i]);break;
+            }
+        }
+        System.out.println(Administratie.berekenGemiddeldAantal(aantal));
+        System.out.println(Administratie.berekenGemiddeldeOmzet(omzet));
     }
     /**
      * Start een simulatie

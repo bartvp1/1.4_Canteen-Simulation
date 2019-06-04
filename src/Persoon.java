@@ -71,12 +71,12 @@ public class Persoon {
 
     @Override
     public String toString() {
-        return "Persoon{" +
-                "bsn=" + bsn +
+        return getClass() + "";/*
+                "(bsn=" + bsn +
                 ", voornaam='" + voornaam + '\'' +
                 ", achternaam='" + achternaam + '\'' +
-                ", geboortedatum=" + geboortedatum +
+                ", geboortedatum=" + geboortedatum.getDatumAsString() +
                 ", geslacht=" + geslacht +
-                '}';
+                ')';*/
     }
 }
