@@ -1,9 +1,12 @@
+import java.awt.*;
 import java.util.Iterator;
 
 public class Kassa {
     private double geldInKas;
     public KassaRij rij;
     private int aantalArtikelen;
+    private Persoon persoon;
+    private Betaalwijze betaalwijze;
     /**
      * Constructor
      */
@@ -22,8 +25,13 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        geldInKas+=getTotaalPrijs();
-        aantalArtikelen+=getAantalArtikelen();
+        betaalwijze = persoon.getBetaalwijze();
+
+        if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
+            if(betaalwijze.betaal(getTotaalPrijs()))
+                aantalArtikelen+=getAantalArtikelen();
+                geldInKas+=getTotaalPrijs();
+        }
     }
     /**
      * Methode om aantal artikelen op dienblad te tellen
