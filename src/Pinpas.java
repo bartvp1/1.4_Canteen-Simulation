@@ -14,7 +14,12 @@ public class Pinpas extends Betaalwijze {
      * Methode om betaling af te handelen
      */
     public boolean betaal(double tebetalen) {
-        // method body omitted
-        return true;//remove this
+        if(saldo >= tebetalen){
+            saldo -= tebetalen;
+            return true;
+        }else{
+            System.out.println("Te weinig saldo");
+            return false;
+        }
     }
 }
