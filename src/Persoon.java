@@ -7,6 +7,7 @@ public class Persoon {
     private String achternaam;
     private Datum geboortedatum;
     private char geslacht;
+    private Betaalwijze betaalwijze;
 
     public Persoon(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht){
         this.bsn = bsn;
@@ -45,6 +46,8 @@ public class Persoon {
         }
     }
 
+    public void setBetaalwijze(Betaalwijze betaalwijze){ this.betaalwijze = betaalwijze;}
+
     public int getBsn(){
         return bsn;
     }
@@ -68,6 +71,8 @@ public class Persoon {
             default:    return "Onbekend";
         }
     }
+
+    public Betaalwijze getBetaalwijze(){ return betaalwijze;}
 
     @Override
     public String toString() {
