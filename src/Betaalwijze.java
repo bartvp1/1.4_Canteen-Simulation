@@ -9,7 +9,6 @@ public abstract class Betaalwijze {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
     /**
      * Methode om betaling af te handelen
      *
