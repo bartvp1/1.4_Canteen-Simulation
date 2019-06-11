@@ -131,11 +131,15 @@ public class KantineSimulatie_2 {
                 } else if(random==1){
                     klant = new Kantinemedewerker(j,true,j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
+<<<<<<< HEAD
                   else{
                     klant = new Persoon(j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
                 //System.out.println(klant.toString());
+=======
+>>>>>>> parent of 6be495a... Update KantineSimulatie_2.java
 
+                )
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON) ;
