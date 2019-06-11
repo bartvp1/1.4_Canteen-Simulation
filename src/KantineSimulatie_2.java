@@ -112,31 +112,31 @@ public class KantineSimulatie_2 {
     public void simuleer(int dagen) {
         double[] omzet = new double[dagen];
         int[] aantal = new int[dagen];
+        Random rand = new Random();
+
         // for lus voor dagen
         for(int i = 0; i < dagen; i++) {
             // bedenk hoeveel personen vandaag binnen lopen
             int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
-            Random rand = new Random();
             aantal[i] = aantalpersonen;
 
             // laat de personen maar komen...
             for(int j = 0; j < aantalpersonen; j++) {
                 Persoon klant;
-                int random = rand.nextInt(aantalpersonen);
+                int random = rand.nextInt(101);
 
-                if(random >= 13){
-                    klant = new Student(j,"HBO-ICT",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(random>=2&&j<=12){
-                    klant = new Docent("XX"+j,"SCMI",j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(random==1){
-                    klant = new Kantinemedewerker(j,true,j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
+                if(random<=(int)(89)){
+                    klant = new Student(j,"HBO-ICT",j+0+j,"student","Dit is de achternaam",new Datum(31,01,2001),'M');
+                } else if(random<=(int)(99)){
+                    klant = new Docent("XX"+j,"SCMI",j+0+j,"docent","Dit is de achternaam",new Datum(31,01,2001),'M');
+                } else if(random==(int)(100)){
+                    klant = new Kantinemedewerker(j,true,j+0+j,"kantinemedewerker","Dit is de achternaam",new Datum(31,01,2001),'M');
+                } else{
+                    klant = new Persoon(j+0+j,"persoon","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
-                  else{
-                    klant = new Persoon(j+0+j,"Dit is de voornaam","Dit is de achternaam",new Datum(31,01,2001),'M');
-                }
-                //System.out.println(klant.toString());
+                System.out.println("dag: "+i +" - klasse: "+klant.getVoornaam());
 
-                
+
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON) ;
@@ -160,11 +160,7 @@ public class KantineSimulatie_2 {
             // zijn gekomen
             // reset de kassa voor de volgende dag
             kantine.verwerkRijVoorKassa();
-            //System.out.println("Totale omzet: "+kantine.getKassa().hoeveelheidGeldInKassa());
-            //System.out.println("Aantal klanten: "+aantalpersonen);
-
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
-
             kantine.getKassa().resetKassa();
 
         }
@@ -174,17 +170,17 @@ public class KantineSimulatie_2 {
 
         for(int i=0;i<size;i++){
             switch(i){
-                case 0: System.out.println("Maandag: " + array[i]);break;
-                case 1: System.out.println("Dinsdag: " + array[i]);break;
-                case 2: System.out.println("Woensdag: " + array[i]);break;
-                case 3: System.out.println("Donderdag: " + array[i]);break;
-                case 4: System.out.println("Vrijdag: " + array[i]);break;
-                case 5: System.out.println("Zaterdag: " + array[i]);break;
-                case 6: System.out.println("Zondag: " + array[i]);break;
+                case 0: System.out.println("Maandag: € " + (int)array[i]);break;
+                case 1: System.out.println("Dinsdag: € " + (int)array[i]);break;
+                case 2: System.out.println("Woensdag: € " + (int)array[i]);break;
+                case 3: System.out.println("Donderdag: € " + (int)array[i]);break;
+                case 4: System.out.println("Vrijdag: € " + (int)array[i]);break;
+                case 5: System.out.println("Zaterdag: € " + (int)array[i]);break;
+                case 6: System.out.println("Zondag: € " + (int)array[i]);break;
             }
         }
-        System.out.println(Administratie.berekenGemiddeldAantal(aantal));
-        System.out.println(Administratie.berekenGemiddeldeOmzet(omzet));
+        System.out.println("Gemiddeld aantal klanten per dag: "+(int)Administratie.berekenGemiddeldAantal(aantal));
+        System.out.println("Gemiddelde omzet per dag: € "+(int)Administratie.berekenGemiddeldeOmzet(omzet));
     }
     /**
      * Start een simulatie

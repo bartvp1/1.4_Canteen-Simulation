@@ -21,33 +21,40 @@ public class Kassa {
      * Tel deze gegevens op bij de controletotalen die voor
      * de kassa worden bijgehouden. De implementatie wordt
      * later vervangen door een echte betaling door de persoon.
-     *
-     * @param klant die moet afrekenen
      */
-    public void rekenAf(Dienblad klant) {
-        betaalwijze = persoon.getBetaalwijze();
+    public void rekenAf() {
+        Dienblad klant = rij.eerstePersoonInRij();
 
-        if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
-            if(betaalwijze.betaal(getTotaalPrijs()))
-                aantalArtikelen+=getAantalArtikelen();
-                geldInKas+=getTotaalPrijs();
+        int aantal=klant.getAantalArtikelen();
+        double totaal = 0;
+
+        Iterator it = klant.getArtikelen();
+        while(it.hasNext()){
+            Artikel element = (Artikel)it.next();
+            totaal+=element.getPrijs();
+            it.remove();
         }
+
+        aantalArtikelen+=aantal;
+        geldInKas+=totaal;
     }
     /**
      * Methode om aantal artikelen op dienblad te tellen
      *
      * @return Het aantal artikelen
      */
-    public int getAantalArtikelen() {
+    /*public int getAantalArtikelen(Dienblad klant) {
         int aantal=0;
-        Iterator it = rij.eerstePersoonInRij().getArtikelen();
+        Iterator it = klant.getArtikelen();
+        //System.out.println(it.hasNext());
         while(it.hasNext()){
             Artikel element = (Artikel)it.next();
+            System.out.println("getAantalArtikelen() while element.getPrijs "+element.getPrijs());
             aantal+=1;
             it.remove();
         }
         return aantal;
-    }
+    }*/
 
     /**
      * Methode om de totaalprijs van de artikelen
@@ -55,16 +62,17 @@ public class Kassa {
      *
      * @return De totaalprijs
      */
-    public double getTotaalPrijs() {
+   /* public double getTotaalPrijs(Dienblad klant) {
         double totaal = 0;
-        Iterator it = rij.eerstePersoonInRij().getArtikelen();
+        Iterator it = klant.getArtikelen();
         while(it.hasNext()){
             Artikel element = (Artikel)it.next();
+            System.out.println("getTotaalPrijs() while element.getPrijs "+element.getPrijs());
             totaal+=element.getPrijs();
             it.remove();
         }
         return totaal;
-    }
+    }*/
     /**
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd,
      * vanaf het moment dat de methode resetWaarden is aangeroepen.

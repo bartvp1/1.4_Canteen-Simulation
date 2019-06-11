@@ -4,12 +4,12 @@ import java.util.Queue;
 
 public class KassaRij {
 
-    public Queue<Dienblad> dienbladen = new LinkedList();
+    public Queue<Dienblad> dienbladen;
     /**
      * Constructor
      */
     public KassaRij() {
-        // method body omitted
+        dienbladen = new LinkedList();
     }
 
     /**
@@ -41,7 +41,7 @@ public class KassaRij {
     public boolean erIsEenRij() {
         return dienbladen.size() > 0;
     }
-    public void removeKlant(Dienblad klant){
-        dienbladen.remove(klant);
+    public void removeKlant(){
+        dienbladen.remove(eerstePersoonInRij());
     }
 }

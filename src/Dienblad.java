@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -29,6 +28,10 @@ public class Dienblad {
 
     public Iterator getArtikelen(){
         return artikelen.iterator();
+    }
+
+    public int getAantalArtikelen(){
+        return artikelen.size();
     }
 
     public Persoon getKlant(){
