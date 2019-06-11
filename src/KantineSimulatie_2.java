@@ -134,7 +134,7 @@ public class KantineSimulatie_2 {
                 } else{
                     klant = new Persoon(j+0+j,"persoon","Dit is de achternaam",new Datum(31,01,2001),'M');
                 }
-                System.out.println("dag: "+i +" - klasse: "+klant.getVoornaam());
+                System.out.println("dag: "+i +" - klasse: "+klant);
 
 
                 // maak persoon en dienblad aan, koppel ze

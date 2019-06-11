@@ -7,4 +7,11 @@ public class Student extends Persoon{
         this.studieRichting = studieRichting;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentNummer=" + studentNummer +
+                ", studieRichting='" + studieRichting + '\'' +
+                '}';
+    }
 }

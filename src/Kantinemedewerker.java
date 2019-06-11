@@ -7,4 +7,12 @@ public class Kantinemedewerker extends Persoon {
         this.medewerkersnummer = medewerkersnummer;
         this.magKassa = magKassa;
     }
+
+    @Override
+    public String toString() {
+        return "Kantinemedewerker{" +
+                "medewerkersnummer=" + medewerkersnummer +
+                ", magKassa=" + magKassa +
+                '}';
+    }
 }

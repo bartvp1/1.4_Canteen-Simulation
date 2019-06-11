@@ -76,12 +76,13 @@ public class Persoon {
 
     @Override
     public String toString() {
-        return getClass() + "";/*
-                "(bsn=" + bsn +
+        return "Persoon{" +
+                "bsn=" + bsn +
                 ", voornaam='" + voornaam + '\'' +
                 ", achternaam='" + achternaam + '\'' +
-                ", geboortedatum=" + geboortedatum.getDatumAsString() +
+                ", geboortedatum=" + geboortedatum +
                 ", geslacht=" + geslacht +
-                ')';*/
+                ", betaalwijze=" + betaalwijze +
+                '}';
     }
 }
