@@ -7,7 +7,7 @@ public class Pinpas extends Betaalwijze {
      * @param kredietlimiet
      */
     public void setKredietLimiet(double kredietlimiet) {
-        // method body omitted
+        this.kredietlimiet = kredietlimiet;
     }
 
     /**

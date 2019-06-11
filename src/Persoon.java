@@ -1,4 +1,6 @@
 import java.text.SimpleDateFormat;
+import java.util.Random;
+
 
 public class Persoon {
 
@@ -15,6 +17,17 @@ public class Persoon {
         this.achternaam = achternaam;
         this.geboortedatum = geboortedatum;
         setGeslacht(geslacht);
+
+        Random rand = new Random();
+        int random = rand.nextInt(10);
+        if(random < 5){
+            betaalwijze = new Contant();
+            betaalwijze.setSaldo(20);
+        } else {
+            betaalwijze = new Pinpas();
+            betaalwijze.setSaldo(20);
+        }
+
     }
 
     public Persoon(){

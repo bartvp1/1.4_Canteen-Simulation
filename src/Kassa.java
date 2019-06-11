@@ -5,8 +5,8 @@ public class Kassa {
     private double geldInKas;
     public KassaRij rij;
     private int aantalArtikelen;
-    private Persoon persoon;
-    private Betaalwijze betaalwijze;
+
+
     /**
      * Constructor
      */
@@ -35,8 +35,21 @@ public class Kassa {
             it.remove();
         }
 
-        aantalArtikelen+=aantal;
-        geldInKas+=totaal;
+        Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
+
+        if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
+            if(betaalwijze.betaal(totaal)){
+                aantalArtikelen+=aantal;
+                geldInKas+=totaal;
+            } else {
+                //System.out.println("te weinig saldo");
+            }
+        } else{
+            //System.out.println(betaalwijze.saldo);
+        }
+
+
+
     }
     /**
      * Methode om aantal artikelen op dienblad te tellen
