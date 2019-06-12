@@ -1,4 +1,4 @@
-public class Kantinemedewerker extends Persoon {
+public class Kantinemedewerker extends Persoon implements KortingskaartHouder {
     int medewerkersnummer;
     boolean magKassa;
 
@@ -6,6 +6,21 @@ public class Kantinemedewerker extends Persoon {
         super(bsn,voornaam,achternaam,geboortedatum,geslacht);
         this.medewerkersnummer = medewerkersnummer;
         this.magKassa = magKassa;
+    }
+
+    @Override
+    public double geefKortingsPercentage() {
+        return 35;
+    }
+
+    @Override
+    public boolean heeftMaximum() {
+        return false;
+    }
+
+    @Override
+    public double geefMaximum() {
+        return 0;
     }
 
     @Override

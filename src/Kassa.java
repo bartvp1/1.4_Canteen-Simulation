@@ -34,13 +34,33 @@ public class Kassa {
             totaal+=element.getPrijs();
             it.remove();
         }
+        double teBetalen;
+        if(klant.getKlant() instanceof KortingskaartHouder){
+            KortingskaartHouder persoon = (KortingskaartHouder)klant.getKlant();
+            double max = persoon.geefMaximum();
+            //System.out.println(+totaal+" "+persoon.getClass()+" "+persoon.heeftMaximum());
+            teBetalen = totaal*(1-(persoon.geefKortingsPercentage()/100));
+            if(persoon.heeftMaximum() && (totaal-teBetalen)>max) {
+                teBetalen = totaal - max;
+                //System.out.println("25");
+            }/*else if(persoon.heeftMaximum()){
+                System.out.println("25");
+            } else{
+                System.out.println("35");
+            }*/
+            System.out.print(teBetalen);
+            System.out.println("\n");
+        } else {
+            teBetalen = totaal;
+        }
+
 
         Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
 
         if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
-            if(betaalwijze.betaal(totaal)){
+            if(betaalwijze.betaal(teBetalen)){
                 aantalArtikelen+=aantal;
-                geldInKas+=totaal;
+                geldInKas+=teBetalen;
             } else {
                 //System.out.println("te weinig saldo");
             }
