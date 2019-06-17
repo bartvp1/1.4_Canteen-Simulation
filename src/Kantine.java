@@ -32,7 +32,7 @@ public class Kantine {
     /**
      * Deze methode handelt de rij voor de kassa af.
      */
-    public void verwerkRijVoorKassa() {
+    public void verwerkRijVoorKassa() throws TeWeinigGeldException {
         while(kassarij.erIsEenRij()) {
             kassa.rekenAf();
             kassarij.removeKlant();

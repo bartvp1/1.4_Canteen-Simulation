@@ -115,36 +115,36 @@ public class KantineSimulatie_2 {
         Random rand = new Random();
 
         // for lus voor dagen
-        for(int i = 0; i < dagen; i++) {
+        for (int i = 0; i < dagen; i++) {
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG,MAX_PERSONEN_PER_DAG);
+            int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
             aantal[i] = aantalpersonen;
 
             // laat de personen maar komen...
-            for(int j = 0; j < aantalpersonen; j++) {
+            for (int j = 0; j < aantalpersonen; j++) {
                 Persoon klant;
                 int random = rand.nextInt(101);
 
-                if(random<=(int)(89)){
-                    klant = new Student(j,"HBO-ICT",j+0+j,"student","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(random<=(int)(99)){
-                    klant = new Docent("XX"+j,"SCMI",j+0+j,"docent","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else if(random==(int)(100)){
-                    klant = new Kantinemedewerker(j,true,j+0+j,"kantinemedewerker","Dit is de achternaam",new Datum(31,01,2001),'M');
-                } else{
-                    klant = new Persoon(j+0+j,"persoon","Dit is de achternaam",new Datum(31,01,2001),'M');
+                if (random <= (int) (89)) {
+                    klant = new Student(j, "HBO-ICT", j + 0 + j, "student", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                } else if (random <= (int) (99)) {
+                    klant = new Docent("XX" + j, "SCMI", j + 0 + j, "docent", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                } else if (random == (int) (100)) {
+                    klant = new Kantinemedewerker(j, true, j + 0 + j, "kantinemedewerker", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                } else {
+                    klant = new Persoon(j + 0 + j, "persoon", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
                 }
-                System.out.println("dag: "+i +" - klasse: "+klant);
+                System.out.println("dag: " + i + " - klasse: " + klant);
 
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON,MAX_ARTIKELEN_PER_PERSOON) ;
+                int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
                 int[] tepakken = getRandomArray(
-                    aantalartikelen, 0, AANTAL_ARTIKELEN-1);
+                        aantalartikelen, 0, AANTAL_ARTIKELEN - 1);
 
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
@@ -159,16 +159,21 @@ public class KantineSimulatie_2 {
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
             // reset de kassa voor de volgende dag
-            kantine.verwerkRijVoorKassa();
+            try {
+                kantine.verwerkRijVoorKassa();
+            } catch (TeWeinigGeldException e) {
+
+            }
+
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             kantine.getKassa().resetKassa();
 
+
+
+
         }
-
         double[] array = Administratie.berekenDagOmzet(omzet);
-        int size = array.length;
-
-        for(int i=0;i<size;i++){
+        for(int i=0;i<array.length;i++){
             switch(i){
                 case 0: System.out.println("Maandag: € " + (int)array[i]);break;
                 case 1: System.out.println("Dinsdag: € " + (int)array[i]);break;

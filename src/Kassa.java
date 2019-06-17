@@ -22,7 +22,7 @@ public class Kassa {
      * de kassa worden bijgehouden. De implementatie wordt
      * later vervangen door een echte betaling door de persoon.
      */
-    public void rekenAf() {
+    public void rekenAf() throws TeWeinigGeldException {
         Dienblad klant = rij.eerstePersoonInRij();
 
         int aantal=klant.getAantalArtikelen();
@@ -48,8 +48,9 @@ public class Kassa {
             } else{
                 System.out.println("35");
             }*/
-            System.out.print(teBetalen);
-            System.out.println("\n");
+
+            //System.out.print(teBetalen);
+            //System.out.println("\n");
         } else {
             teBetalen = totaal;
         }
@@ -58,12 +59,9 @@ public class Kassa {
         Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
 
         if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
-            if(betaalwijze.betaal(teBetalen)){
-                aantalArtikelen+=aantal;
-                geldInKas+=teBetalen;
-            } else {
-                //System.out.println("te weinig saldo");
-            }
+            betaalwijze.betaal(teBetalen);
+            aantalArtikelen+=aantal;
+            geldInKas+=teBetalen;
         } else{
             //System.out.println(betaalwijze.saldo);
         }
