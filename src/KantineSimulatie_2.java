@@ -126,15 +126,15 @@ public class KantineSimulatie_2 {
                 int random = rand.nextInt(101);
 
                 if (random <= (int) (89)) {
-                    klant = new Student(j, "HBO-ICT", j + 0 + j, "student", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                    klant = new Student(j, "HBO-ICT", j + 0 + j, "Gent", "Student", new Datum(31, 01, 2001), 'M');
                 } else if (random <= (int) (99)) {
-                    klant = new Docent("XX" + j, "SCMI", j + 0 + j, "docent", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                    klant = new Docent("XX" + j, "SCMI", j + 0 + j, "Gent", "Docent", new Datum(31, 01, 2001), 'M');
                 } else if (random == (int) (100)) {
-                    klant = new Kantinemedewerker(j, true, j + 0 + j, "kantinemedewerker", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                    klant = new Kantinemedewerker(j, true, j + 0 + j, "Gent", "Kantinemedewerker", new Datum(31, 01, 2001), 'M');
                 } else {
-                    klant = new Persoon(j + 0 + j, "persoon", "Dit is de achternaam", new Datum(31, 01, 2001), 'M');
+                    klant = new Persoon(j + 0 + j, "Gent", "Persoon", new Datum(31, 01, 2001), 'M');
                 }
-                System.out.println("dag: " + i + " - klasse: " + klant);
+                //System.out.println("dag: " + i + " - klasse: " + klant);
 
 
                 // maak persoon en dienblad aan, koppel ze
@@ -153,17 +153,25 @@ public class KantineSimulatie_2 {
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
                 kantine.loopPakSluitAan(new Dienblad(klant), artikelen);
+
+                // verwerk rij voor de kassa
+                try {
+                    kantine.verwerkRijVoorKassa();
+                } catch (TeWeinigGeldException e) {
+                    if(klant.getBetaalwijze() instanceof Pinpas) {
+                        System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld op de pinpas.");
+                    } else {
+                        System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld contant.");
+                    }
+                }
+
             }
 
-            // verwerk rij voor de kassa
+
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
             // reset de kassa voor de volgende dag
-            try {
-                kantine.verwerkRijVoorKassa();
-            } catch (TeWeinigGeldException e) {
 
-            }
 
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             kantine.getKassa().resetKassa();

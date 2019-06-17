@@ -22,11 +22,10 @@ public class Persoon {
         int random = rand.nextInt(10);
         if(random < 5){
             betaalwijze = new Contant();
-            betaalwijze.setSaldo(20);
         } else {
             betaalwijze = new Pinpas();
-            betaalwijze.setSaldo(20);
         }
+        betaalwijze.setSaldo(20);
 
     }
 
