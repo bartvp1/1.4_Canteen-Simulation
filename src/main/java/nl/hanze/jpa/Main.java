@@ -109,7 +109,10 @@ public class Main {
                 "SELECT o.school_name, AVG(s.age) FROM Student s JOIN s.studies o " +
                     "GROUP BY o.school_name ");
         List<Object[]> resultList = query.getResultList();
-        resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+        //resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+        for (Object o :resultList) {
+            System.out.println(o);
+        }
         double totaalGemiddelde=0.0;
         for(Object[] r: resultList) { 
         	totaalGemiddelde += (Double)r[1];

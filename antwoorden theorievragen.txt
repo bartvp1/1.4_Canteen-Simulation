@@ -1,0 +1,9 @@
+1e hibernate_sequence, student, student_telefoon, studie, telefoon
+2a omdat een student meerdere telefoons kan hebben
+2b omdat er geen koppeltabel is
+	- dezelfde student_id kan vaker voorkomen in studieinschrijving
+	- zo worden er geggevens dubbel (of vaker) opgeslagen
+2c verschillende stuudieinschrijvingen kunnen dezelfde student_id hebben
+2d studentkaart staat in de klasse student
+	- met embedded en embeddable kun je een tabelkolommen opdelen in groepen
+3a gegevens moeten alleen aan de db worden toegevoegd als de simulatie zonder errors verloopt
