@@ -1,8 +1,19 @@
 import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-import static java.lang.Math.round;
 
 public class KantineSimulatie_2 {
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    private EntityManager manager;
+    public void runVoorbeeld() {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        // transactions omitted
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
+    }
+
 
     // kantine
     private Kantine kantine;
