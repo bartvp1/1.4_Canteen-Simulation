@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public class Main {
+public class KantineSimulatie {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
     private EntityManager manager;
     public void runVoorbeeld() {
@@ -56,7 +56,7 @@ public class Main {
      * Constructor
      *
      */
-    public Main() {
+    public KantineSimulatie() {
         kantine = new Kantine(manager);
         random = new Random();
         int[] hoeveelheden = getRandomArray(
@@ -172,11 +172,7 @@ public class Main {
                 try {
                     kantine.verwerkRijVoorKassa();
                 } catch (TeWeinigGeldException e) {
-                    if(klant.getBetaalwijze() instanceof Pinpas) {
-                        System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld op de pinpas.");
-                    } else {
-                        System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld contant.");
-                    }
+                    System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld.");
                 }
 
             }
@@ -219,7 +215,7 @@ public class Main {
         } else {
             dagen = Integer.parseInt(args[0]);
         }
-        Main sim = new Main();
+        KantineSimulatie sim = new KantineSimulatie();
         sim.simuleer(dagen);
     }
 }

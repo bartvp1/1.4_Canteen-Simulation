@@ -5,17 +5,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-@Entity
-@Table(name="facturen")
+@Entity @Table(name = "factuur")
 public class Factuur implements Serializable {
 
-    @Id @Column(name = "id") @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id @Column(name = "id",nullable = false) @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    @Column(name = "datum")
+
+    @Column(name = "datum",nullable = false)
     private LocalDate datum;
-    @Column(name = "korting")
+
+    @Column(name = "korting",nullable = false)
     private double korting;
-    @Column(name = "totaal")
+
+    @Column(name = "totaal",nullable = false)
     private double totaal;
 
     public Factuur(){
@@ -56,16 +58,22 @@ public class Factuur implements Serializable {
         }
         korting = sum_prijs - totaal;
 
-        create();
     }
 
+
+    public long getId(){
+        return id;
+    }
+
+    public LocalDate getDate(){
+        return datum;
+    }
     /*
     * @return het totaalbedrag
     */
     public double getTotaal() {
         return totaal;
     }
-
 
     /**
     * @return de toegepaste korting

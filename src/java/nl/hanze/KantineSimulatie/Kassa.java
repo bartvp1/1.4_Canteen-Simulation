@@ -2,6 +2,7 @@ package nl.hanze.KantineSimulatie;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.awt.*;
 import java.time.LocalDate;
 
@@ -36,22 +37,41 @@ public class Kassa {
         double totaal = 0;
 
         Factuur factuur = new Factuur(klant, LocalDate.now());
+
+        long id = factuur.getId();
+        LocalDate datum = factuur.getDate();
         double teBetalen = factuur.getTotaal();
         double korting = factuur.getKorting();
 
-
-        Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
-
-        if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
-            betaalwijze.betaal(teBetalen);
-            aantalArtikelen+=aantal;
-            geldInKas+=teBetalen;
-            totaalkorting+=korting;
+        //EntityTransaction transaction = null;
+        EntityTransaction transaction = null;
+        //try {
+            Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
+            if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
+                betaalwijze.betaal(teBetalen);
+                aantalArtikelen+=aantal;
+                geldInKas+=teBetalen;
+                totaalkorting+=korting;
+            /*}
+            // Get a transaction, sla de student gegevens op en commit de transactie
+            transaction = manager.getTransaction();
+            transaction.begin();
+            manager.persist(factuur);
+            transaction.commit();
+        } catch (TeWeinigGeldException ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } catch (Exception ex) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();*/
         }
 
-
-
     }
+
     /**
      * Methode om aantal artikelen op dienblad te tellen
      *
