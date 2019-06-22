@@ -173,6 +173,8 @@ public class KantineSimulatie {
                     kantine.verwerkRijVoorKassa();
                 } catch (TeWeinigGeldException e) {
                     System.out.println(klant.getVoornaam() + " " + klant.getAchternaam() + " heeft niet genoeg geld.");
+                } catch (Exception ex){
+                    ex.printStackTrace();
                 }
 
             }

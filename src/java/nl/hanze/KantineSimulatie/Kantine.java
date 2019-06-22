@@ -52,11 +52,7 @@ public class Kantine {
         return kantineaanbod;
     }
 
-    public void setKantineaanbod(KantineAanbod kantineaanbod){
+    public void setKantineAanbod(KantineAanbod kantineaanbod){
         this.kantineaanbod = kantineaanbod;
-    }
-
-    public void setKantineAanbod(KantineAanbod aanbod) {
-        kantineaanbod = aanbod;
     }
 }
