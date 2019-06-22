@@ -57,7 +57,7 @@ public class Main {
      *
      */
     public Main() {
-        kantine = new Kantine();
+        kantine = new Kantine(manager);
         random = new Random();
         int[] hoeveelheden = getRandomArray(
             AANTAL_ARTIKELEN,

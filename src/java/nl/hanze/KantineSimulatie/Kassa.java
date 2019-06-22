@@ -1,21 +1,26 @@
 package nl.hanze.KantineSimulatie;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import java.awt.*;
-import java.util.Iterator;
+import java.time.LocalDate;
 
 public class Kassa {
     private double geldInKas;
     public KassaRij rij;
     private int aantalArtikelen;
-
+    private int totaalkorting;
+    private EntityManager manager;
 
     /**
      * Constructor
      */
-    public Kassa(KassaRij kassarij) {
+    public Kassa(EntityManager manager, KassaRij kassarij) {
+        this.manager = manager;
         rij=kassarij;
         geldInKas=0;
         aantalArtikelen=0;
+        totaalkorting=0;
     }
 
     /**
@@ -30,32 +35,9 @@ public class Kassa {
         int aantal=klant.getAantalArtikelen();
         double totaal = 0;
 
-        Iterator it = klant.getArtikelen();
-        while(it.hasNext()){
-            Artikel element = (Artikel)it.next();
-            totaal+=element.getPrijs();
-            it.remove();
-        }
-        double teBetalen;
-        if(klant.getKlant() instanceof KortingskaartHouder){
-            KortingskaartHouder persoon = (KortingskaartHouder)klant.getKlant();
-            double max = persoon.geefMaximum();
-            //System.out.println(+totaal+" "+persoon.getClass()+" "+persoon.heeftMaximum());
-            teBetalen = totaal*(1-(persoon.geefKortingsPercentage()/100));
-            if(persoon.heeftMaximum() && (totaal-teBetalen)>max) {
-                teBetalen = totaal - max;
-                //System.out.println("25");
-            }/*else if(persoon.heeftMaximum()){
-                System.out.println("25");
-            } else{
-                System.out.println("35");
-            }*/
-
-            //System.out.print(teBetalen);
-            //System.out.println("\n");
-        } else {
-            teBetalen = totaal;
-        }
+        Factuur factuur = new Factuur(klant, LocalDate.now());
+        double teBetalen = factuur.getTotaal();
+        double korting = factuur.getKorting();
 
 
         Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
@@ -64,8 +46,7 @@ public class Kassa {
             betaalwijze.betaal(teBetalen);
             aantalArtikelen+=aantal;
             geldInKas+=teBetalen;
-        } else{
-            //System.out.println(betaalwijze.saldo);
+            totaalkorting+=korting;
         }
 
 
@@ -127,6 +108,10 @@ public class Kassa {
         return geldInKas;
     }
 
+    public double hoeveelheidKorting() {
+        return totaalkorting;
+    }
+
     /**
      * reset de waarden van het aantal gepasseerde artikelen en
      * de totale hoeveelheid geld in de kassa.
@@ -134,5 +119,6 @@ public class Kassa {
     public void resetKassa() {
         geldInKas=0;
         aantalArtikelen=0;
+        totaalkorting=0;
     }
 }
