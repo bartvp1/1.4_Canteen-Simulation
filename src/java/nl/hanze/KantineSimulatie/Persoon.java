@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 import java.text.SimpleDateFormat;
 import java.util.Random;
 

@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 import java.awt.*;
 import java.util.Iterator;
 

@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public abstract class Betaalwijze {
 
     public double saldo;

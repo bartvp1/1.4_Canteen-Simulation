@@ -1,3 +1,6 @@
+package nl.hanze.KantineSimulatie;
+
+
 public class Student extends Persoon{
     int studentNummer;
     String studieRichting;

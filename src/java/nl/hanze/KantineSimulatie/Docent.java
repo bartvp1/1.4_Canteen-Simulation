@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public class Docent extends Persoon implements KortingskaartHouder {
     String afkorting;
     String afdeling;

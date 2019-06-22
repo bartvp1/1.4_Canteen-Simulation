@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public class Administratie {
 
     private static final int DAYS_IN_WEEK = 7;

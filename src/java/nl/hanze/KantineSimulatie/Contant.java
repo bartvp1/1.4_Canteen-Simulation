@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public class Contant extends Betaalwijze {
     /**
      * Methode om betaling af te handelen

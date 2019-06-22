@@ -1,10 +1,13 @@
+package nl.hanze.KantineSimulatie;
+
+
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public class KantineSimulatie_2 {
+public class Main {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
     private EntityManager manager;
     public void runVoorbeeld() {
@@ -53,7 +56,7 @@ public class KantineSimulatie_2 {
      * Constructor
      *
      */
-    public KantineSimulatie_2() {
+    public Main() {
         kantine = new Kantine();
         random = new Random();
         int[] hoeveelheden = getRandomArray(
@@ -216,7 +219,7 @@ public class KantineSimulatie_2 {
         } else {
             dagen = Integer.parseInt(args[0]);
         }
-        KantineSimulatie_2 sim = new KantineSimulatie_2();
+        Main sim = new Main();
         sim.simuleer(dagen);
     }
 }

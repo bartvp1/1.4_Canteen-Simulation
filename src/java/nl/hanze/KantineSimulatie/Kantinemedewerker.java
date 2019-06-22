@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public class Kantinemedewerker extends Persoon implements KortingskaartHouder {
     int medewerkersnummer;
     boolean magKassa;

@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 import java.util.*;
 
 public class KantineAanbod {

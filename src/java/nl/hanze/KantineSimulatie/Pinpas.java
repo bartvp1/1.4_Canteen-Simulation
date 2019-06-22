@@ -1,3 +1,6 @@
+package nl.hanze.KantineSimulatie;
+
+
 public class Pinpas extends Betaalwijze {
 
     private double kredietlimiet;

@@ -1,3 +1,5 @@
+package nl.hanze.KantineSimulatie;
+
 public class TeWeinigGeldException extends Exception {
     TeWeinigGeldException(){
         super();
