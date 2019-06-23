@@ -3,9 +3,9 @@ package nl.hanze.KantineSimulatie;
 import java.io.Serializable;
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class FactuurRegel implements Serializable {
-    @Id @Column(name="id") @GeneratedValue(strategy=GenerationType.IDENTITY)
+    /*@Id @Column(name="id") @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Id
@@ -21,7 +21,9 @@ public class FactuurRegel implements Serializable {
 
     /**
      * @return een printbare factuurregel
-     */
+    */
+
+    /*
     @Override
     public String toString() {
         return "FactuurRegel{" +
@@ -29,5 +31,5 @@ public class FactuurRegel implements Serializable {
                 ", factuur=" + factuur +
                 ", artikel=" + artikel +
                 '}';
-    }
+    }*/
 }

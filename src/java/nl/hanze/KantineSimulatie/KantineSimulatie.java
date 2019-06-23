@@ -1,9 +1,11 @@
 package nl.hanze.KantineSimulatie;
 
 
+import java.sql.ResultSet;
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -205,9 +207,27 @@ public class KantineSimulatie {
         System.out.println("Gemiddeld aantal klanten per dag: "+(int)Administratie.berekenGemiddeldAantal(aantal));
         System.out.println("Gemiddelde omzet per dag: € "+(int)Administratie.berekenGemiddeldeOmzet(omzet));
 
+
+
+        List<Object> query_3a = manager.createNamedQuery("3a").getResultList();
+        List<Object> query_3b = manager.createNamedQuery("3b").getResultList();
+        List<Object> query_3c = manager.createNamedQuery("3c").setMaxResults(3).getResultList();
+        System.out.println("\n");
+        System.out.printf("3a: \u20ac %.2f\n",query_3a.get(0));
+        System.out.printf("3b: \u20ac %.2f\n",query_3b.get(0));
+        for(Object e : query_3c){
+            System.out.printf("3c: \u20ac %.2f\n",e);
+
+        }
+
+
         manager.close();
         ENTITY_MANAGER_FACTORY.close();
     }
+
+
+
+
     /**
      * Start een simulatie
      */

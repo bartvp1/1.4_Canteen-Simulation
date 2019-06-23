@@ -31,6 +31,8 @@ public class Administratie {
         return totaal / omzet.length;
     }
 
+    //public static double berekenTotaleOmzet();
+
     /**
      * Methode om dagomzet uit te rekenen
      *

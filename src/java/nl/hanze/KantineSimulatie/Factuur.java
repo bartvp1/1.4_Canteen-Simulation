@@ -5,8 +5,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-@Entity
-@Table(name = "factuur")
+@Entity(name="factuur")
+@NamedQueries({
+        @NamedQuery(name = "3a", query = "select sum(totaal) from factuur"),
+        @NamedQuery(name = "3b", query = "select avg(totaal) from factuur"),
+        @NamedQuery(name = "3c", query = "select totaal from factuur order by totaal desc")
+})
 public class Factuur implements Serializable {
 
     @Id @Column(name = "id",nullable = false) @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -59,15 +63,6 @@ public class Factuur implements Serializable {
         }
         korting = sum_prijs - totaal;
 
-    }
-
-
-    public long getId(){
-        return id;
-    }
-
-    public LocalDate getDate(){
-        return datum;
     }
     /*
     * @return het totaalbedrag
