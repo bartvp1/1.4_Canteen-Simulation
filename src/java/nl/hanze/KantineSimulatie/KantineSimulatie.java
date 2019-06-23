@@ -12,13 +12,6 @@ import org.hibernate.SessionFactory;
 public class KantineSimulatie {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
     private EntityManager manager;
-    public void runVoorbeeld() {
-        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        // transactions omitted
-        manager.close();
-        ENTITY_MANAGER_FACTORY.close();
-    }
-
 
     // kantine
     private Kantine kantine;
@@ -69,6 +62,8 @@ public class KantineSimulatie {
             artikelnamen, artikelprijzen, hoeveelheden);
 
         kantine.setKantineAanbod(kantineaanbod);
+
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
     }
 
     /**
@@ -208,6 +203,9 @@ public class KantineSimulatie {
         }
         System.out.println("Gemiddeld aantal klanten per dag: "+(int)Administratie.berekenGemiddeldAantal(aantal));
         System.out.println("Gemiddelde omzet per dag: € "+(int)Administratie.berekenGemiddeldeOmzet(omzet));
+
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
     }
     /**
      * Start een simulatie

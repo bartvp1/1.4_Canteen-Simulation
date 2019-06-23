@@ -33,7 +33,7 @@ public class Kassa {
     public void rekenAf() throws TeWeinigGeldException {
         Dienblad klant = rij.eerstePersoonInRij();
 
-        int aantal=klant.getAantalArtikelen();
+        int aantal = klant.getAantalArtikelen();
         double totaal = 0;
 
         Factuur factuur = new Factuur(klant, LocalDate.now());
@@ -44,69 +44,41 @@ public class Kassa {
         double korting = factuur.getKorting();
 
         //EntityTransaction transaction = null;
-        EntityTransaction transaction = null;
-        //try {
+        try {
             Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
-            if(betaalwijze instanceof Pinpas || betaalwijze instanceof Contant){
+            if (betaalwijze instanceof Pinpas || betaalwijze instanceof Contant) {
                 betaalwijze.betaal(teBetalen);
-                aantalArtikelen+=aantal;
-                geldInKas+=teBetalen;
-                totaalkorting+=korting;
-            /*}
+                transaction(factuur);
+                aantalArtikelen += aantal;
+                geldInKas += teBetalen;
+                totaalkorting += korting;
+            }
+        } catch(TeWeinigGeldException ex){
+            System.out.println("Te weinig geld exception");
+            throw ex;
+        }
+    }
+
+
+    public void transaction(Factuur factuur){
+        EntityTransaction transaction = null;
+
+        try {
             // Get a transaction, sla de student gegevens op en commit de transactie
             transaction = manager.getTransaction();
             transaction.begin();
             manager.persist(factuur);
             transaction.commit();
-        } catch (TeWeinigGeldException ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        } catch (Exception ex) {
+        } catch (NullPointerException ex) {
             // If there are any exceptions, roll back the changes
             if (transaction != null) {
                 transaction.rollback();
             }
-            ex.printStackTrace();*/
+            //ex.printStackTrace();
+            System.out.println("Transaction failed");
         }
-
     }
 
-    /**
-     * Methode om aantal artikelen op dienblad te tellen
-     *
-     * @return Het aantal artikelen
-     */
-    /*public int getAantalArtikelen(Dienblad klant) {
-        int aantal=0;
-        Iterator it = klant.getArtikelen();
-        //System.out.println(it.hasNext());
-        while(it.hasNext()){
-            Artikel element = (Artikel)it.next();
-            System.out.println("getAantalArtikelen() while element.getPrijs "+element.getPrijs());
-            aantal+=1;
-            it.remove();
-        }
-        return aantal;
-    }*/
-
-    /**
-     * Methode om de totaalprijs van de artikelen
-     * op dienblad uit te rekenen
-     *
-     * @return De totaalprijs
-     */
-   /* public double getTotaalPrijs(Dienblad klant) {
-        double totaal = 0;
-        Iterator it = klant.getArtikelen();
-        while(it.hasNext()){
-            Artikel element = (Artikel)it.next();
-            System.out.println("getTotaalPrijs() while element.getPrijs "+element.getPrijs());
-            totaal+=element.getPrijs();
-            it.remove();
-        }
-        return totaal;
-    }*/
     /**
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd,
      * vanaf het moment dat de methode resetWaarden is aangeroepen.
