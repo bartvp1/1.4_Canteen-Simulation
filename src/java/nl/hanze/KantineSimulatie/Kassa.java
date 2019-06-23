@@ -36,10 +36,7 @@ public class Kassa {
         int aantal = klant.getAantalArtikelen();
         double totaal = 0;
 
-        Factuur factuur = new Factuur(klant, LocalDate.now());
-
-        long id = factuur.getId();
-        LocalDate datum = factuur.getDate();
+        Factuur factuur = new Factuur(klant, LocalDate.of(2019,1,KantineSimulatie.currentDay+1));
         double teBetalen = factuur.getTotaal();
         double korting = factuur.getKorting();
 
@@ -62,7 +59,8 @@ public class Kassa {
 
     public void transaction(Factuur factuur){
         EntityTransaction transaction = null;
-
+        //manager.isOpen();
+        //System.out.println(manager.isOpen());
         try {
             // Get a transaction, sla de student gegevens op en commit de transactie
             transaction = manager.getTransaction();
@@ -75,7 +73,7 @@ public class Kassa {
                 transaction.rollback();
             }
             //ex.printStackTrace();
-            System.out.println("Transaction failed");
+            System.out.println("Transaction failed (NullPointer)");
         }
     }
 

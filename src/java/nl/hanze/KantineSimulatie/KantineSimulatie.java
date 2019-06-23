@@ -46,12 +46,14 @@ public class KantineSimulatie {
     // minimum en maximum artikelen per persoon
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
+    public static int currentDay;
 
     /**
      * Constructor
      *
      */
     public KantineSimulatie() {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         kantine = new Kantine(manager);
         random = new Random();
         int[] hoeveelheden = getRandomArray(
@@ -62,8 +64,6 @@ public class KantineSimulatie {
             artikelnamen, artikelprijzen, hoeveelheden);
 
         kantine.setKantineAanbod(kantineaanbod);
-
-        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
     }
 
     /**
@@ -127,6 +127,7 @@ public class KantineSimulatie {
 
         // for lus voor dagen
         for (int i = 0; i < dagen; i++) {
+            currentDay = i;
             // bedenk hoeveel personen vandaag binnen lopen
             int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
             aantal[i] = aantalpersonen;

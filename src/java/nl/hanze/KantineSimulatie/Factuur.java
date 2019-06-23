@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Iterator;
 
+@Entity
 @Table(name = "factuur")
 public class Factuur implements Serializable {
 
