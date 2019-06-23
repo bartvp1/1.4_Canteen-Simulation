@@ -40,7 +40,6 @@ public class Kassa {
         double teBetalen = factuur.getTotaal();
         double korting = factuur.getKorting();
 
-        //EntityTransaction transaction = null;
         try {
             Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
             if (betaalwijze instanceof Pinpas || betaalwijze instanceof Contant) {
@@ -67,7 +66,7 @@ public class Kassa {
             transaction.begin();
             manager.persist(factuur);
             transaction.commit();
-        } catch (NullPointerException ex) {
+        } catch (Exception ex) {
             // If there are any exceptions, roll back the changes
             if (transaction != null) {
                 transaction.rollback();
