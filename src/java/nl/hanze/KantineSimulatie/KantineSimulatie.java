@@ -13,7 +13,7 @@ import org.hibernate.SessionFactory;
 
 public class KantineSimulatie {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
-    private EntityManager manager;
+    public static EntityManager manager;
 
     // kantine
     private Kantine kantine;

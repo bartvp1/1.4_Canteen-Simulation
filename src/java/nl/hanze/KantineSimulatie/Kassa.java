@@ -71,8 +71,8 @@ public class Kassa {
             if (transaction != null) {
                 transaction.rollback();
             }
-            //ex.printStackTrace();
-            System.out.println("Transaction failed (NullPointer)");
+            ex.printStackTrace();
+            System.out.println("Transaction failed");
         }
     }
 

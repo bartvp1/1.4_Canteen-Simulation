@@ -1,7 +1,13 @@
 package nl.hanze.KantineSimulatie;
 
+import javax.persistence.*;
+
+@Entity(name="artikel")
 public class Artikel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String naam;
     private double prijs;
 
@@ -9,9 +15,7 @@ public class Artikel {
         this.naam = naam;
         this.prijs = prijs;
     }
-
-    public Artikel(){
-    }
+    public Artikel(){}
 
     public String getNaam(){
         return naam;
@@ -19,14 +23,6 @@ public class Artikel {
 
     public double getPrijs(){
         return prijs;
-    }
-
-    public void setNaam(String nieuw){
-        naam = nieuw;
-    }
-
-    public void setPrijs(double nieuw){
-        prijs = nieuw;
     }
 
     @Override
