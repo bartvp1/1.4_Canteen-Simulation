@@ -1,9 +1,0 @@
-3a 	select sum(totaal) as omzet, sum(korting) as 'toegepaste korting' from factuur
-	#'2419.79', '56.86'
-3b	select avg(totaal) as 'avg p.p.', avg(korting) as 'avg korting' from factuur
-	#'4.223019197207686', '0.09923211169284468'
-3c	select id, totaal as totaal from factuur order by totaal desc limit 3;
-	# id, totaal
-	#'404', '8.4'
-	#'36', '8.4'
-	#'273', '7.949999999999999'
