@@ -24,7 +24,7 @@ public class Factuur implements Serializable {
 
     private double totaal;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<FactuurRegel> regels;
 
     public Factuur(){
